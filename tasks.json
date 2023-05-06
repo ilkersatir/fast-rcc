@@ -1,0 +1,31 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "create react component",
+			"type": "shell",
+			"command": "mkdir ${input:dirPath}/${input:componentName} && New-Item -ItemType File ${input:dirPath}/${input:componentName}/index.ts, ${input:dirPath}/${input:componentName}/${input:componentName}.tsx, ${input:dirPath}/${input:componentName}/${input:componentName}.styles.tsx, ${input:dirPath}/${input:componentName}/${input:componentName}.styles.scss, ${input:dirPath}/${input:componentName}/${input:componentName}.test.tsx  && Set-Content -Path ${input:dirPath}/${input:componentName}/index.ts -Value 'export * from \\\"./${input:componentName}\\\"' && Set-Content -Path ${input:dirPath}/${input:componentName}/${input:componentName}.tsx -Value 'import ${input:componentName}Styles from \\\"./${input:componentName}Styles.styles\\\"\n import \\\"${input:componentName}.styles.scss\\\"\n  export const ${input:componentName} = () => {\n  return (\n    <div>\n      ${input:componentName}\n    </div>\n  )\n}\n\nexport default ${input:componentName};' && Set-Content -Path ${input:dirPath}/${input:componentName}/${input:componentName}.styles.tsx -Value 'export const ${input:componentName}Styles = () => {}' && Set-Content -Path ${input:dirPath}/${input:componentName}/${input:componentName}.styles.scss -Value '.${input:componentName} { /* Style */ }' && Set-Content -Path ${input:dirPath}/${input:componentName}/${input:componentName}.test.tsx -Value 'import { render, screen } from \\\"@testing-library/react\\\"; \nimport ${input:componentName} from \\\"./${input:componentName}\\\";\n\ndescribe(\\\"${input:componentName}\\\", () => {\n  it(\\\"renders the ${input:componentName} component\\\", () => {\n    const { getByText } = render(<${input:componentName} />);\n    const component = screen.getByText(\\\"${input:componentName}\\\");\n    expect(component).toBeInTheDocument();\n  });\n});' && echo 'export * from \\\"./${input:componentName}\\\";' >> ${input:dirPath}/index.ts",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared"
+			}
+		}
+	],
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "componentName",
+			"description": "Enter component name",
+			"default": ""
+		},
+		{
+			"type": "promptString",
+			"id": "dirPath",
+			"description": "Enter the directory path where you want to create the component",
+			"default": "src/components"
+		}
+	]
+}

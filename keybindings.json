@@ -1,0 +1,7 @@
+[
+	{
+		"key": "alt+n",
+		"command": "workbench.action.tasks.runTask",
+		"args": "create react component"
+	}
+]
