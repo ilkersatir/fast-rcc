@@ -1,20 +1,27 @@
-# "create react component" task
+# README
 
-## Description
+This script creates a React component directory with the necessary files, including an index file, a TypeScript file, a test file, a styles file, and a storybook file.
 
-This is a Visual Studio Code task that creates a React component file structure in the specified directory. It creates a directory with the given component name, and inside that directory it creates five files: `index.ts`, `[componentName].tsx`, `[componentName].styles.tsx`, `[componentName].styles.scss`, and `[componentName].test.tsx`.
+## Getting Started
 
-The `[componentName].tsx` file includes the basic structure of a React functional component, and the `[componentName].styles.scss` file includes a basic CSS class for the component. The `[componentName].test.tsx` file includes a basic test using the `@testing-library/react` library. All files are created with initial content, and the `index.ts` file includes an export statement for the component.
+1. Clone this repository to your local machine or download the script.
+2. Ensure that you have Python installed on your machine.
+3. Run the script in your terminal using the command `python create_component.py`.
+4. Follow the prompts to enter the component name, directory path, and style type (TSX or SCSS).
+5. The script will create a directory with the specified component name and generate the necessary files.
 
-## Usage
+## Files Generated
 
-To use this task, open the Command Palette in Visual Studio Code (`Ctrl+Shift+P` or `Cmd+Shift+P`) and search for "Tasks: Manage Tasks". Choose "Configure Tasks" and select "create react component" from the list. The task can be run using the shortcut `Alt+N` or by selecting "Run Task" from the Command Palette.
+- `index.ts` exports the component from the TypeScript file.
+- `{component_name}.tsx` is the TypeScript file that exports the component.
+- `{component_name}.styles.tsx` or `{component_name}.styles.scss` is the styles file, depending on the style type entered.
+- `{component_name}.test.tsx` is the test file.
+- `{component_name}.stories.tsx` is the storybook file.
 
-## Inputs
+## Contributing
 
-* `componentName`: The name of the component to be created.
-* `dirPath`: The path to the directory where the component should be created.
+This is an open-source project, and contributions are welcome. Please submit a pull request if you would like to contribute.
 
-## Installation
+## License
 
-To use this task in your React project, copy the task configuration and key-binding into your project's `.vscode/tasks.json` and `keybindings.json` files, respectively. Alternatively, copy these files into your global VS Code configuration folder at `C:\Users\UserName\AppData\Roaming\Code\User` to use it globally for all projects.
+This project is licensed under the MIT License - see the `LICENSE` file for details.
