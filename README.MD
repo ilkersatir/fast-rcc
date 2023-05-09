@@ -1,3 +1,5 @@
+# FAST-RCC (REACT COMPONENT CREATOR)
+
 # README
 
 This script creates a React component directory with the necessary files, including an index file, a TypeScript file, a test file, a styles file, and a storybook file.
