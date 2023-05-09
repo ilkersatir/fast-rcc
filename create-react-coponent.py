@@ -17,7 +17,8 @@ with open(os.path.join(component_dir, "index.ts"), "w") as f:
 
 # Create the component file and write content
 with open(os.path.join(component_dir, f"{component_name}.tsx"), "w") as f:
-    
+    f.write(f"import React from 'react';\n")
+
     if style_type == "tsx":
         f.write(f"import {{ {component_name}Styles }} from './{component_name}.styles';\n\n")
     else:
@@ -39,6 +40,7 @@ with open(os.path.join(component_dir, f"{component_name}.tsx"), "w") as f:
 # Create the styles file and write content
 with open(os.path.join(component_dir, f"{component_name}.styles.{style_type}"), "w") as f:
     if style_type == "tsx":
+        f.write(f"import React from 'react';\n")
         f.write(f"export const {component_name}Styles = {{ /* Style */ }}\n")
     else:
         f.write(f".{component_name} {{ /* Style */ }}\n")
@@ -57,6 +59,7 @@ with open(os.path.join(component_dir, f"{component_name}.test.tsx"), "w") as f:
 
 # Create the story file and write content
 with open(os.path.join(component_dir, f"{component_name}.stories.tsx"), "w") as f:
+    f.write(f"import React from 'react';\n")
     f.write(f"import {{ Story, Meta }} from '@storybook/react';\n")
     f.write(f"import {{ {component_name} }} from './{component_name}';\n\n")
     f.write(f"export default {{\n")
