@@ -8,7 +8,7 @@ This script creates a React component directory with the necessary files, includ
 
 1. Clone this repository to your local machine or download the script.
 2. Ensure that you have Python installed on your machine.
-3. Run the script in your terminal using the command `python create_component.py`.
+3. Run the script in your terminal using the command `python rcc.py` or `py rcc.py`.
 4. Follow the prompts to enter the component name, directory path, and style type (TSX or SCSS).
 5. The script will create a directory with the specified component name and generate the necessary files.
 
