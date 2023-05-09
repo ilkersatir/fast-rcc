@@ -4,11 +4,12 @@ import os
 # Get user inputs
 component_name = input("Enter component name: ")
 package_path = "./"
-dir_path = input("Enter the directory path where you want to create the component (default: src/components): ") or "src/components"
-style_type = input("Enter the style type (tsx or scss): ") or "scss"
+dir_path = input("Enter the directory path where you want to create the component (default: components): ") or "components"
+default_style_type = "tsx"
+style_type = input("Enter the style type (tsx or scss): ") or default_style_type
 
 # Create the component directory
-component_dir = os.path.join(dir_path, component_name)
+component_dir = os.path.join("src/" + dir_path, component_name)
 os.makedirs(component_dir)
 
 # Create the component files and write content 
@@ -59,22 +60,24 @@ with open(os.path.join(component_dir, f"{component_name}.test.tsx"), "w") as f:
 
 # Create the story file and write content
 with open(os.path.join(component_dir, f"{component_name}.stories.tsx"), "w") as f:
-    f.write(f"import React from 'react';\n")
-    f.write(f"import {{ Story, Meta }} from '@storybook/react';\n")
+    f.write("import type { Meta, StoryObj } from '@storybook/react';\n")
     f.write(f"import {{ {component_name} }} from './{component_name}';\n\n")
-    f.write(f"export default {{\n")
-    f.write(f"  title: '{component_name}',\n")
+    f.write(f"const meta: Meta<typeof {component_name}> = {{\n")
+    f.write(f"  title: '{dir_path}/{component_name}',\n")
     f.write(f"  component: {component_name},\n")
-    f.write(f"}} as Meta;\n\n")
-    f.write(f"const Template: Story = (args) => <{component_name} {{...args}} />;\n\n")
-    f.write(f"export const Default = Template.bind({{}});\n") 
-    f.write(f"Default.args = {{\n")
-    f.write(f" // props \n")
-    f.write(f"}};\n")
+    f.write(f"}};\n\n")
+    f.write("export default meta;\n")
+    f.write(f"type Story = StoryObj<typeof {component_name}>;\n\n")
+    f.write(f"export const Default: Story = {{\n")
+    f.write(f"  args: {{\n")
+    f.write(f"    // props\n")
+    f.write(f"  }},\n")
+    f.write("};\n")
+
 
 
 # Add export statement to the index.ts file
-with open(os.path.join(dir_path, "index.ts"), "a") as f:
+with open(os.path.join("src/" + dir_path, "index.ts"), "a") as f:
     f.write(f"export * from './{component_name}';\n")
 
 # Adds sass to package.json if not already listed
