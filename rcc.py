@@ -30,7 +30,7 @@ with open(os.path.join(component_dir, f"{component_name}.tsx"), "w") as f:
     f.write(f"}}\n\n")
     f.write(f"export const {component_name} = () => {{\n")
     f.write(f"  return (\n")
-    f.write(f"    <div className='{component_name}'>\n")
+    f.write(f"    <div className='{component_name.lower()}'>\n")
     f.write(f"      {component_name}\n")
     f.write(f"    </div>\n")
     f.write(f"  )\n")
@@ -44,7 +44,8 @@ with open(os.path.join(component_dir, f"{component_name}.styles.{style_type}"), 
         f.write(f"import React from 'react';\n")
         f.write(f"export const {component_name}Styles = {{ /* Style */ }}\n")
     else:
-        f.write(f".{component_name} {{ /* Style */ }}\n")
+        f.write(f".{component_name.lower()} {{ &__element {{ min-width: 0; // remove this }}\n &--modifier {{ min-width: 0; // remove this }}\n }}\n")
+
 
 # Create the test file and write content
 with open(os.path.join(component_dir, f"{component_name}.test.tsx"), "w") as f:
@@ -58,6 +59,7 @@ with open(os.path.join(component_dir, f"{component_name}.test.tsx"), "w") as f:
     f.write(f"  }});\n")
     f.write(f"}});\n")
 
+
 # Create the story file and write content
 with open(os.path.join(component_dir, f"{component_name}.stories.tsx"), "w") as f:
     f.write("import type { Meta, StoryObj } from '@storybook/react';\n")
@@ -65,6 +67,11 @@ with open(os.path.join(component_dir, f"{component_name}.stories.tsx"), "w") as 
     f.write(f"const meta: Meta<typeof {component_name}> = {{\n")
     f.write(f"  title: '{dir_path}/{component_name}',\n")
     f.write(f"  component: {component_name},\n")
+    f.write(f"  decorators: [\n")
+    f.write(f"    (Story) => (\n")
+    f.write(f"      <Story />\n")
+    f.write(f"    ),\n")
+    f.write(f"  ],\n")
     f.write(f"}};\n\n")
     f.write("export default meta;\n")
     f.write(f"type Story = StoryObj<typeof {component_name}>;\n\n")
@@ -73,7 +80,6 @@ with open(os.path.join(component_dir, f"{component_name}.stories.tsx"), "w") as 
     f.write(f"    // props\n")
     f.write(f"  }},\n")
     f.write("};\n")
-
 
 
 # Add export statement to the index.ts file
